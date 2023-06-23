@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -45,6 +47,7 @@ android {
         }
     }
 }
+apply from: 'dependencies.gradle'
 
 dependencies {
 
@@ -63,4 +66,28 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    // navigation
+    implementation navigationComponent.fragment
+    implementation navigationComponent.ui
+
+    // Glide
+    implementation glideComponent.glide
+    annotationProcessor glideComponent.compiler
+
+    // hilt
+    implementation hiltComponent.hilt
+    kapt hiltComponent.compiler
+
+    // coroutines
+    coroutinesComponent.coroutines
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+}
+
+kapt {
+    correctErrorTypes true
 }

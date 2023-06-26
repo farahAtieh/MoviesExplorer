@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'kotlin-parcelize'
 }
 apply from: 'dependencies.gradle'
 
@@ -21,15 +22,16 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
-
-        def BASE_URL = '"https://api.themoviedb.org/3/"'
-        buildConfigField 'String', 'BASE_URL', BASE_URL
-
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
         def API_KEY = "\"" + properties.getProperty('MOVIE_API_KEY') + "\""
         buildConfigField 'String', 'API_KEY', API_KEY
 
+        def BASE_URL = '"https://api.themoviedb.org/3/"'
+        buildConfigField 'String', 'BASE_URL', BASE_URL
+
+        def IMAGE_BASE_URL = '"https://image.tmdb.org/t/p/"'
+        buildConfigField 'String', 'IMAGE_BASE_URL', IMAGE_BASE_URL
     }
 
     buildTypes {
@@ -77,25 +79,29 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
+    implementation coilComponent.coil
+
     // navigation
     implementation navigationComponent.fragment
     implementation navigationComponent.ui
 
-    // Glide
-    implementation glideComponent.glide
-    annotationProcessor glideComponent.compiler
-
     // hilt
     implementation hiltComponent.hilt
     kapt hiltComponent.compiler
+    implementation hiltComponent.navigation
 
     // coroutines
     coroutinesComponent.coroutines
 
     // retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
-    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation retrofitComponent.retrofit
+    implementation retrofitComponent.converter
+    implementation retrofitComponent.okhttp
+
+    //paging
+    implementation pagingComponent.runtime
+    implementation pagingComponent.compose
+
 }
 
 kapt {

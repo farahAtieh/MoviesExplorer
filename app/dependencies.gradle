@@ -15,22 +15,31 @@ ext {
     // hilt
     def hilt_version = "2.44"
     hiltComponent = [
-            hilt    : "com.google.dagger:hilt-android:$hilt_version",
-            compiler: "com.google.dagger:hilt-android-compiler:$hilt_version"
+            hilt      : "com.google.dagger:hilt-android:$hilt_version",
+            compiler  : "com.google.dagger:hilt-android-compiler:$hilt_version",
+            navigation: "androidx.hilt:hilt-navigation-compose:1.0.0"
     ]
 
-    // Glide
-    def glide_version = "4.11.0"
-    glideComponent = [
-            glide   : "com.github.bumptech.glide:glide:$glide_version",
-            compiler: "com.github.bumptech.glide:compiler:$glide_version"
+    // Coil
+    def coil_version = "0.13.0"
+    coilComponent = [
+            coil: "com.google.accompanist:accompanist-coil:$coil_version",
     ]
 
     // Retrofit
     def retrofit_version = "2.9.0"
     def okhttp_version = "4.10.0"
+    def converter_version = "2.7.2"
     retrofitComponent = [
             retrofit : "com.squareup.retrofit2:retrofit:$retrofit_version",
-            converter: "com.squareup.okhttp3:okhttp:$okhttp_version"
+            converter: "com.squareup.retrofit2:converter-gson:$converter_version",
+            okhttp: "com.squareup.okhttp3:okhttp:$okhttp_version"
+    ]
+
+    // Paging
+    def paging_version = "3.1.1"
+    pagingComponent = [
+            runtime: "androidx.paging:paging-runtime:$paging_version",
+            compose: "androidx.paging:paging-compose:1.0.0-alpha17"
     ]
 }

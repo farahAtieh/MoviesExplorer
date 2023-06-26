@@ -30,6 +30,8 @@ android {
         def BASE_URL = '"https://api.themoviedb.org/3/"'
         buildConfigField 'String', 'BASE_URL', BASE_URL
 
+        def IMAGE_BASE_URL = '"https://image.tmdb.org/t/p/"'
+        buildConfigField 'String', 'IMAGE_BASE_URL', IMAGE_BASE_URL
     }
 
     buildTypes {
@@ -77,13 +79,11 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
+    implementation coilComponent.coil
+
     // navigation
     implementation navigationComponent.fragment
     implementation navigationComponent.ui
-
-    // Glide
-    implementation glideComponent.glide
-    annotationProcessor glideComponent.compiler
 
     // hilt
     implementation hiltComponent.hilt

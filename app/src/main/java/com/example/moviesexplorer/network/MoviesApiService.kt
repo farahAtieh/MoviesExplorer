@@ -7,5 +7,8 @@ import retrofit2.http.Query
 interface MoviesApiService {
 
     @GET("discover/movie")
-    suspend fun getMoviesBy(@Query("sort_by") sortBy: String?): MovieResponse
+    suspend fun getMoviesBy(
+        @Query("page") page: Int,
+        @Query("sort_by") sortBy: String?,
+    ): MovieResponse
 }
